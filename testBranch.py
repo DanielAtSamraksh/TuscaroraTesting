@@ -17,7 +17,7 @@ def readable_dir(prospective_dir):
     return prospective_dir
 
 def cmd(cmd): # run a command
-    return subprocess.check_output( cmd, cwd=repo ) # repo is global
+    return subprocess.check_output( cmd, stderr=subprocess.STDOUT, cwd=repo ) # repo is global
 
 ########## Main Starts Here #############
 
