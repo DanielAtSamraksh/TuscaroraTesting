@@ -17,17 +17,13 @@ def readable_dir(prospective_dir):
     return prospective_dir
 
 def cmd(cmd): # run a command
-    return subprocess.check_output( cmd, cwd=repo )
+    return subprocess.check_output( cmd, cwd=repo ) # repo is global
 
 ########## Main Starts Here #############
 
 # from http://stackoverflow.com/a/1265445/268040, ensure only one instance is running.
 from tendo import singleton # install with "sudo pip install tendo"
 me = singleton.SingleInstance() # will sys.exit(-1) if other instance is running
-
-# import time
-# time.sleep(5) # delays for 5 seconds
-
 
 ### Parsing Arguments
 parser = argparse.ArgumentParser(description='Test a branch.')
@@ -55,7 +51,7 @@ print (args);
 
 if not args.test.closed: args.test.close()
 test = "./%s"%os.path.basename(args.test.name)
-repo = os.path.dirname(args.test.name)
+repo = os.path.dirname(args.test.name) # global
 print "test: %s, repo: %s"%(test, repo)
 
 ### run tests for each branch specified    
